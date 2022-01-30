@@ -1,0 +1,13 @@
+{
+  "name": "nseJS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "date-fns": "^2.28.0",
+    "eslint": "^8.8.0",
+    "jsdom": "^19.0.0",
+    "node-fetch": "^3.2.0"
+  }
+}
