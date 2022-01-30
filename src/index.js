@@ -20,7 +20,7 @@ while (differenceInCalendarDays(today, dateCurrent) > 0) {
     ourDateFormatter(dateCurrent),
     ourDateFormatter(addDays(dateCurrent, 364)),
   ])
-  dateCurrent = addDays(dateCurrent, 364)
+  dateCurrent = addDays(dateCurrent, 365)
 }
 
 console.log(dateArray)
@@ -40,15 +40,18 @@ Promise.all(allFetchPromises).then(responses => {
 
   Promise.all(allResPromises)
     .then(bodies => {
-      console.log(bodies.length)
       bodies.forEach(body => {
         const dom = new JSDOM(`<!DOCTYPE html>${body}`)
         const dataText =
           dom.window.document.getElementById('csvContentDiv')?.textContent
         if (dataText) {
-          const cleaned = dataText.replaceAll(':', '\n')
-          console.log('then body')
-          allText = allText + '\n' + cleaned
+          const cleaned = dataText
+            .replaceAll(':', '\n')
+            .replaceAll('"', '')
+            .split('\n')
+            .slice(1)
+            .join('\n')
+          allText = allText + cleaned
         }
       })
     })
